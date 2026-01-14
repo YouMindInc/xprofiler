@@ -1,23 +1,16 @@
 {
-  "name": "xprofiler",
-  "version": "3.1.0",
+  "name": "@youmindinc/xprofiler",
+  "version": "3.2.0",
   "engines": {
     "node": ">=18.19.0"
   },
-  "description": "node.js addon to output runtime logs",
+  "description": "node.js addon to output runtime logs (YouMind fork with MUSL libc support)",
   "bin": {
     "xprofctl": "bin/xprofctl"
   },
   "main": "xprofiler.js",
-  "binary": {
-    "module_name": "xprofiler",
-    "module_path": "./build/binding/{configuration}/{node_abi}-{platform}-{arch}/",
-    "remote_path": "./v{version}/",
-    "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
-    "host": "https://github.com/X-Profiler/xprofiler/releases/download"
-  },
   "scripts": {
-    "install": "node-pre-gyp install --fallback-to-build",
+    "install": "node-pre-gyp rebuild",
     "package": "node scripts/build.js",
     "pack-common": "node scripts/common.js",
     "pack-7u": "node scripts/7u.js",
@@ -37,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/X-Profiler/xprofiler.git"
+    "url": "git+https://github.com/YouMindInc/xprofiler.git"
   },
   "files": [
     "bin",
@@ -52,9 +45,9 @@
   "author": "yeekwanvong@gmail.com",
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/X-Profiler/xprofiler/issues"
+    "url": "https://github.com/YouMindInc/xprofiler/issues"
   },
-  "homepage": "https://github.com/X-Profiler/xprofiler#readme",
+  "homepage": "https://github.com/YouMindInc/xprofiler#readme",
   "dependencies": {
     "@mapbox/node-pre-gyp": "^1.0.11",
     "moment": "^2.30.1",
