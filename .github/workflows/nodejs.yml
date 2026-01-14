@@ -67,7 +67,7 @@ jobs:
       image: node:${{ matrix.node-version }}-alpine
     steps:
     - name: Install build dependencies
-      run: apk add --no-cache python3 make g++ git
+      run: apk add --no-cache python3 make g++ git linux-headers
 
     - name: Checkout Git Source
       uses: actions/checkout@master
