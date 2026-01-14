@@ -46,12 +46,22 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
+    - name: Package Binary
+      run: npm run pack
+
+    - name: Upload Release Assets
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: release/**
+        fail_on_unmatched_files: true
+
   Alpine:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        node-version: [ 18, 20, 22 ]
+        node-version: [ 18, 20, 22, 24 ]
     container:
       image: node:${{ matrix.node-version }}-alpine
     steps:
@@ -67,13 +77,12 @@ jobs:
     - name: Continuous Integration
       run: npm run ci
 
-    # - name: Package Binary
-    #   run: npm run pack
+    - name: Package Binary
+      run: npm run pack
 
-    # - name: Draft Release
-    #   uses: softprops/action-gh-release@v1
-    #   if: startsWith(github.ref, 'refs/tags/')
-    #   with:
-    #     files: release/**
-    #     fail_on_unmatched_files: true
-    #     draft: true
+    - name: Upload Release Assets
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        files: release/**
+        fail_on_unmatched_files: true

@@ -109,6 +109,14 @@ extern "C" {
 
 #endif
 
+/* MUSL libc compatibility: __off64_t is glibc-specific */
+#ifndef __GLIBC__
+#ifndef __off64_t_defined
+typedef off_t __off64_t;
+#define __off64_t_defined
+#endif
+#endif
+
 /* As glibc often provides subtly incompatible data structures (and implicit
  * wrapper functions that convert them), we provide our own kernel data
  * structures for use by the system calls.
