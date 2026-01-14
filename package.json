@@ -1,6 +1,6 @@
 {
   "name": "@youmindinc/xprofiler",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "engines": {
     "node": ">=18.19.0"
   },
@@ -17,7 +17,7 @@
     "host": "https://github.com/YouMindInc/xprofiler/releases/download"
   },
   "scripts": {
-    "install": "node-pre-gyp install --fallback-to-build --build-from-source",
+    "install": "node-pre-gyp install --fallback-to-build",
     "package": "node scripts/build.js",
     "pack-common": "node scripts/common.js",
     "pack-7u": "node scripts/7u.js",
