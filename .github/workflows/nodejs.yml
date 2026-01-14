@@ -46,6 +46,27 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
 
+  Alpine:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [ 18, 20, 22 ]
+    container:
+      image: node:${{ matrix.node-version }}-alpine
+    steps:
+    - name: Install build dependencies
+      run: apk add --no-cache python3 make g++ git
+
+    - name: Checkout Git Source
+      uses: actions/checkout@master
+
+    - name: Install Dependencies
+      run: npm install --build-from-source
+
+    - name: Continuous Integration
+      run: npm run ci
+
     # - name: Package Binary
     #   run: npm run pack
 
