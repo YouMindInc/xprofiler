@@ -2727,7 +2727,6 @@ LSS_INLINE int LSS_NAME(raise)(int sig) {
 LSS_INLINE int LSS_NAME(setpgrp)() { return LSS_NAME(setpgid)(0, 0); }
 
 LSS_INLINE int LSS_NAME(sysconf)(int name) {
-  extern int __getpagesize(void);
   switch (name) {
     case _SC_OPEN_MAX: {
       struct kernel_rlimit limit;
@@ -2735,7 +2734,8 @@ LSS_INLINE int LSS_NAME(sysconf)(int name) {
                                                             : limit.rlim_cur;
     }
     case _SC_PAGESIZE:
-      return __getpagesize();
+      /* Use getpagesize() for MUSL compatibility instead of glibc-specific __getpagesize */
+      return getpagesize();
     default:
       errno = ENOSYS;
       return -1;
