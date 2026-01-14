@@ -91,7 +91,12 @@ extern "C" {
 
 #include <endian.h>
 #include <errno.h>
+/* MUSL libc compatibility: use sys/syscall.h instead of linux/unistd.h */
+#ifdef __GLIBC__
 #include <linux/unistd.h>
+#else
+#include <sys/syscall.h>
+#endif
 #include <signal.h>
 #include <stdarg.h>
 #include <string.h>
